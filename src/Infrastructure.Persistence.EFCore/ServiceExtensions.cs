@@ -1,8 +1,10 @@
 ﻿using Domain.Services;
 using Infrastructure.Persistence.EFCore.Services;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data;
 
 namespace Infrastructure.Persistence.EFCore
 {
@@ -16,6 +18,7 @@ namespace Infrastructure.Persistence.EFCore
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDbConnection>(x => new SqlConnection(configuration.GetConnectionString("Main")));
             return services;
         }
     }
