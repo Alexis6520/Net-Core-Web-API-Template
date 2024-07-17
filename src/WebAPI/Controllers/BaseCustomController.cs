@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         {
             var statusCode = (int)result.StatusCode;
 
-            if (!result.Succeded)
+            if (!result.Succeeded)
             {
                 return StatusCode(statusCode, result);
             }

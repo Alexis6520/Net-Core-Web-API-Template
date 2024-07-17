@@ -1,27 +1,45 @@
 using Application.Services;
 using Infrastructure.Persistence.EFCore;
+using NLog;
+using NLog.Web;
 using WebAPI;
 
-var builder = WebApplication.CreateBuilder(args);
+var logger = LogManager.Setup().GetCurrentClassLogger();
 
-// Add services to the container.
-builder.Services
-    .AddApplicationServices()
-    .AddEFCore(builder.Configuration);
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    var builder = WebApplication.CreateBuilder(args);
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-app.InitializeDatabase();
-app.Run();
+    builder.Services
+        .AddApplicationServices()
+        .AddEFCore(builder.Configuration);
+
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+    builder.Logging.ClearProviders();
+    builder.Host.UseNLog();
+    var app = builder.Build();
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.UseMiddleware<NLogRequestPostedBodyMiddleware>(new NLogRequestPostedBodyMiddlewareOptions());
+    app.InitializeDatabase();
+    app.Run();
+}
+catch (Exception ex)
+{
+    logger.Error(ex, "Programa detenido por excepción");
+    throw;
+}
+finally
+{
+    LogManager.Shutdown();
+}

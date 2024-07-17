@@ -8,11 +8,20 @@ namespace Application.Services.Wrappers
     /// </summary>
     public class Result
     {
+        public Result() { }
+
+        public Result(bool succeeded, HttpStatusCode statusCode, IEnumerable<string> errors = null)
+        {
+            Succeeded = succeeded;
+            StatusCode = statusCode;
+            Errors = errors;
+        }
+
         /// <summary>
         /// Indica si la operación fue exitosa
         /// </summary>
         [JsonIgnore]
-        public bool Succeded { get; set; }
+        public bool Succeeded { get; set; }
 
         /// <summary>
         /// Estatus Http a devolver
@@ -35,7 +44,7 @@ namespace Application.Services.Wrappers
         {
             return new Result
             {
-                Succeded = true,
+                Succeeded = true,
                 StatusCode = statusCode,
             };
         }
@@ -50,7 +59,7 @@ namespace Application.Services.Wrappers
         {
             return new Result
             {
-                Succeded = false,
+                Succeeded = false,
                 StatusCode = statusCode,
                 Errors = errors
             };
@@ -62,6 +71,12 @@ namespace Application.Services.Wrappers
     /// </summary>
     public class Result<T> : Result
     {
+        public Result() { }
+
+        public Result(bool succeeded, HttpStatusCode statusCode, IEnumerable<string> errors = null) : base(succeeded, statusCode, errors)
+        {
+        }
+
         /// <summary>
         /// Valor devuelto por la operación
         /// </summary>
@@ -78,7 +93,7 @@ namespace Application.Services.Wrappers
         {
             return new Result<T>
             {
-                Succeded = true,
+                Succeeded = true,
                 StatusCode = statusCode,
                 Value = value
             };
@@ -94,7 +109,7 @@ namespace Application.Services.Wrappers
         {
             return new Result<T>
             {
-                Succeded = false,
+                Succeeded = false,
                 StatusCode = statusCode,
                 Errors = errors
             };
