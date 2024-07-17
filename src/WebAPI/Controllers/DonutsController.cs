@@ -46,5 +46,19 @@ namespace WebAPI.Controllers
             var result = await _mediator.Send(new PagedQuery<DonutDTO>(page, pageSize));
             return CustomResult(result);
         }
+
+        /// <summary>
+        /// Actualiza una dona
+        /// </summary>
+        /// <param name="id">Id de dona</param>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(int id, DonutUpdateCommand command)
+        {
+            command.Id = id;
+            var result = await _mediator.Send(command);
+            return CustomResult(result);
+        }
     }
 }
