@@ -3,6 +3,7 @@ using Infrastructure.Persistence.EFCore;
 using NLog;
 using NLog.Web;
 using WebAPI;
+using WebAPI.Middlewares;
 
 var logger = LogManager.Setup().GetCurrentClassLogger();
 
@@ -31,6 +32,7 @@ try
     app.UseAuthorization();
     app.MapControllers();
     app.UseMiddleware<NLogRequestPostedBodyMiddleware>(new NLogRequestPostedBodyMiddlewareOptions());
+    app.UseMiddleware<ExceptionMiddleware>();
     app.InitializeDatabase();
     app.Run();
 }

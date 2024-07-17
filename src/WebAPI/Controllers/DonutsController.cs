@@ -1,8 +1,8 @@
 ﻿using Application.Services.Commands.DonutCommands;
-using Application.Services.Commands.GenericCommands;
+using Application.Services.Commands;
 using Application.Services.Queries.DTOs;
 using Application.Services.Queries.DTOs.DonutDTOs;
-using Application.Services.Queries.GenericQueries;
+using Application.Services.Queries;
 using Application.Services.Wrappers;
 using Domain.Entities;
 using MediatR;
