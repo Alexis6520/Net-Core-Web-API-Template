@@ -1,4 +1,4 @@
-﻿namespace Application.Services.Queries.DTOs
+﻿namespace Application.Services.Queries.DTOs.DonutDTOs
 {
     public class DonutDTO
     {
