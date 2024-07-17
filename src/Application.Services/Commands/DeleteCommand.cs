@@ -1,7 +1,7 @@
 ﻿using Application.Services.Wrappers;
 using MediatR;
 
-namespace Application.Services.Commands.GenericCommands
+namespace Application.Services.Commands
 {
     /// <summary>
     /// Comando genérico para eliminar

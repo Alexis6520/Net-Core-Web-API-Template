@@ -1,6 +1,6 @@
-﻿using Application.Services.Queries.DTOs;
+﻿using Application.Services.Queries;
+using Application.Services.Queries.DTOs;
 using Application.Services.Queries.DTOs.DonutDTOs;
-using Application.Services.Queries.GenericQueries;
 using Application.Services.Wrappers;
 using Dapper;
 using MediatR;

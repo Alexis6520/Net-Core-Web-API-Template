@@ -1,4 +1,4 @@
-﻿using Application.Services.Commands.GenericCommands;
+﻿using Application.Services.Commands;
 using Application.Services.Wrappers;
 using Domain.Entities;
 using Domain.Services;

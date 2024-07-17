@@ -1,7 +1,7 @@
 ﻿using Application.Services.Wrappers;
 using MediatR;
 
-namespace Application.Services.Queries.GenericQueries
+namespace Application.Services.Queries
 {
     /// <summary>
     /// Query genérico para buscar un elemento por identificador

@@ -2,7 +2,7 @@
 using Application.Services.Wrappers;
 using MediatR;
 
-namespace Application.Services.Queries.GenericQueries
+namespace Application.Services.Queries
 {
     /// <summary>
     /// Query genérico que devuelve elementos de una página
