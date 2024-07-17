@@ -1,8 +1,10 @@
 ﻿using Application.Services.Commands.DonutCommands;
+using Application.Services.Commands.GenericCommands;
 using Application.Services.Queries.DTOs;
 using Application.Services.Queries.DTOs.DonutDTOs;
 using Application.Services.Queries.GenericQueries;
 using Application.Services.Wrappers;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +18,7 @@ namespace WebAPI.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Result<int>>> CreateAsync(DonutCreateCommand command)
         {
             var result = await _mediator.Send(command);
@@ -54,10 +57,24 @@ namespace WebAPI.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> UpdateAsync(int id, DonutUpdateCommand command)
         {
             command.Id = id;
             var result = await _mediator.Send(command);
+            return CustomResult(result);
+        }
+
+        /// <summary>
+        /// Elimina una dona
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await _mediator.Send(new DeleteCommand<Donut, int>(id));
             return CustomResult(result);
         }
     }
