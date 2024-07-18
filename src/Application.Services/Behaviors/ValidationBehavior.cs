@@ -1,4 +1,5 @@
-﻿using Application.Services.Wrappers;
+﻿using Application.Services.Queries;
+using Application.Services.Wrappers;
 using FluentValidation;
 using MediatR;
 using System.Net;
@@ -26,6 +27,21 @@ namespace Application.Services.Behaviors
                 if (failures.Any())
                 {
                     var errors = failures.Select(x => x.ErrorMessage);
+                    return (TResponse)Activator.CreateInstance(typeof(TResponse), false, HttpStatusCode.BadRequest, errors);
+                }
+            }
+
+            var requestType = typeof(TRequest);
+
+            if (requestType.GetGenericTypeDefinition() == typeof(PagedQuery<>))
+            {
+                var props = requestType.GetProperties();
+                var pageProp = props.FirstOrDefault(p => p.Name == "Page");
+                var pageSizeProp = props.FirstOrDefault(p => p.Name == "PageSize");
+
+                if ((pageProp != null && (int)pageProp.GetValue(request) < 1) || (pageSizeProp != null && (int)pageSizeProp.GetValue(request) < 1))
+                {
+                    IEnumerable<string> errors = ["El número y tamaño de página tienen que ser mayores a 0"];
                     return (TResponse)Activator.CreateInstance(typeof(TResponse), false, HttpStatusCode.BadRequest, errors);
                 }
             }

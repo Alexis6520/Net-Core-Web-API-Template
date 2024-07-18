@@ -27,11 +27,6 @@ namespace Application.Services.QueryHandlers
 
         public async Task<Result<PagedList<DonutDTO>>> Handle(PagedQuery<DonutDTO> request, CancellationToken cancellationToken)
         {
-            if (request.Page < 1 || request.PageSize < 1)
-            {
-                return Result<PagedList<DonutDTO>>.Fail(HttpStatusCode.BadRequest, "Valores inválidos");
-            }
-
             var sql = "SELECT COUNT(Id) FROM Donuts; " +
                 "SELECT Id,Name FROM Donuts " +
                 "ORDER BY Id " +
