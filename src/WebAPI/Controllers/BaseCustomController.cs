@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// Clase base para controladores
+    /// Clase base para controladores personalizada
     /// </summary>
     /// <param name="mediator"></param>
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseCustomController(IMediator mediator) : ControllerBase
+    public abstract class BaseCustomController(IMediator mediator) : ControllerBase
     {
         protected readonly IMediator _mediator = mediator;
 

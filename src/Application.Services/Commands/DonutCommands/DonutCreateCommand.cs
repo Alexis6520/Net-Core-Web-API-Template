@@ -8,7 +8,14 @@ namespace Application.Services.Commands.DonutCommands
     /// </summary>
     public class DonutCreateCommand : IRequest<Result<int>>
     {
+        /// <summary>
+        /// Nombre
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Precio
+        /// </summary>
         public decimal Price { get; set; }
     }
 }

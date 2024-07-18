@@ -9,9 +9,20 @@ namespace Application.Services.Commands.DonutCommands
     /// </summary>
     public class DonutUpdateCommand : IRequest<Result>
     {
+        /// <summary>
+        /// Id de registro a actualizar
+        /// </summary>
         [JsonIgnore]
         public int Id { get; set; }
+
+        /// <summary>
+        /// Nuevo nombre
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Nuevo precio
+        /// </summary>
         public decimal Price { get; set; }
     }
 }

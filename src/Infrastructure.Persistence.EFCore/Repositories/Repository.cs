@@ -4,6 +4,11 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Persistence.EFCore.Repositories
 {
+    /// <summary>
+    /// Implementación genérica de repositorio
+    /// </summary>
+    /// <typeparam name="TEntity">Tipo de entidad</typeparam>
+    /// <param name="dbSet">DbSet</param>
     public class Repository<TEntity>(DbSet<TEntity> dbSet) : IRepository<TEntity> where TEntity : class
     {
         private readonly DbSet<TEntity> _dbSet = dbSet;

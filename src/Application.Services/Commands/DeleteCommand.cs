@@ -10,6 +10,9 @@ namespace Application.Services.Commands
     /// <typeparam name="I">Tipo de identificador</typeparam>
     public class DeleteCommand<T, I>(I id) : IRequest<Result>
     {
+        /// <summary>
+        /// Id de registro a eliminar
+        /// </summary>
         public I Id { get; set; } = id;
     }
 }
