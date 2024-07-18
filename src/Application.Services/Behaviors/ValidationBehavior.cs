@@ -33,7 +33,7 @@ namespace Application.Services.Behaviors
 
             var requestType = typeof(TRequest);
 
-            if (requestType.GetGenericTypeDefinition() == typeof(PagedQuery<>))
+            if (requestType.IsGenericType && requestType.GetGenericTypeDefinition() == typeof(PagedQuery<>))
             {
                 var props = requestType.GetProperties();
                 var pageProp = props.FirstOrDefault(p => p.Name == "Page");
