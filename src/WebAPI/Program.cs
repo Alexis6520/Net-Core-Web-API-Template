@@ -13,11 +13,12 @@ try
 
     builder.Services
         .AddApplicationServices()
-        .AddEFCore(builder.Configuration);
+        .AddEFCore(builder.Configuration)
+        .AddSwagger()
+        .AddJWTAuthentication(builder.Configuration);
 
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
     var app = builder.Build();
@@ -29,6 +30,7 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
     app.UseMiddleware<NLogRequestPostedBodyMiddleware>(new NLogRequestPostedBodyMiddlewareOptions());

@@ -5,23 +5,23 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{FFB74019-2E82-4B76-83C0-A0DF799893A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{EB140F90-BC35-46C5-91C0-3BA611F054CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{EB140F90-BC35-46C5-91C0-3BA611F054CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain Services", "2. Domain Services", "{3D3D593F-6DA8-490C-907B-1F9E9955A388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Services", "src\Domain.Services\Domain.Services.csproj", "{3E7429F1-792D-4E1C-923D-1D948A9E4523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Services", "src\Domain.Services\Domain.Services.csproj", "{3E7429F1-792D-4E1C-923D-1D948A9E4523}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Application Services", "3. Application Services", "{CCA56B9A-F1D1-47E9-8C77-AB52960E2C7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Services", "src\Application.Services\Application.Services.csproj", "{E8AFB843-8F2D-4C2D-AB00-D47E64DE6F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Services", "src\Application.Services\Application.Services.csproj", "{E8AFB843-8F2D-4C2D-AB00-D47E64DE6F8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{4392A245-AA1F-4DC6-A76C-166CB3C163F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Persistence.EFCore", "src\Infrastructure.Persistence.EFCore\Infrastructure.Persistence.EFCore.csproj", "{BB2127EF-FD8D-403B-8B25-10807AF50061}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Persistence.EFCore", "src\Infrastructure.Persistence.EFCore\Infrastructure.Persistence.EFCore.csproj", "{BB2127EF-FD8D-403B-8B25-10807AF50061}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Web API", "5. Web API", "{421A937E-044F-433A-AF48-545EF79267A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "src\WebAPI\WebAPI.csproj", "{BD2CFC40-4881-43AF-8561-FA1F73B0EE91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\WebAPI\WebAPI.csproj", "{BD2CFC40-4881-43AF-8561-FA1F73B0EE91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
