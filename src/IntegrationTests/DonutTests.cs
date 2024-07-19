@@ -3,6 +3,7 @@ using Application.Services.Queries.DTOs;
 using Application.Services.Queries.DTOs.DonutDTOs;
 using Application.Services.Wrappers;
 using IntegrationTests.Services;
+using System.Net;
 using System.Net.Http.Json;
 
 namespace IntegrationTests
@@ -72,6 +73,14 @@ namespace IntegrationTests
             response.EnsureSuccessStatusCode();
             var donut = UnitOfWork.Donuts.Find(keys: [id]);
             Assert.Null(donut);
+        }
+
+        [Fact]
+        public async Task UnauthorizedCreate()
+        {
+            var command = new DonutCreateCommand("Glaseada original", 19);
+            var response = await Client.PostAsJsonAsync(_baseUrl, command);
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
         public override void Dispose()
