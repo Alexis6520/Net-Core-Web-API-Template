@@ -47,3 +47,5 @@ finally
 {
     LogManager.Shutdown();
 }
+
+public partial class Program { } // Para pruebas de integración

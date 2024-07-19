@@ -17,6 +17,11 @@ namespace Infrastructure.Persistence.EFCore.Services
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
+
         public void Dispose()
         {
             _donuts = null;

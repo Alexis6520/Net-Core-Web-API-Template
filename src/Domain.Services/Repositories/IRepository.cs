@@ -24,13 +24,35 @@ namespace Domain.Services.Repositories
         Task<TEntity> FindAsync(CancellationToken cancellationToken = default, params object[] keys);
 
         /// <summary>
+        /// Busca una entidad por sus llaves
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns>Entidad encontrada</returns>
+        TEntity Find(params object[] keys);
+
+        /// <summary>
         /// Busca todas las entidades que cumplen cierta condición de forma asíncrona
         /// </summary>
         /// <param name="filter">Condición</param>
         /// <param name="include">Propiedades a incluir separado por comas</param>
         /// <param name="cancellationToken"></param>
         /// <returns>Tarea con la entidades coincidentes</returns>
-        Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, string include = null, CancellationToken cancellationToken = default);
+        Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
+            IOrderedQueryable<TEntity>> orderBy = null,
+            string include = null,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Busca todas las entidades que cumplen cierta condición
+        /// </summary>
+        /// <param name="filter">Condición</param>
+        /// <param name="include">Propiedades a incluir separado por comas</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string include = null,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Marca la entidad para su eliminación

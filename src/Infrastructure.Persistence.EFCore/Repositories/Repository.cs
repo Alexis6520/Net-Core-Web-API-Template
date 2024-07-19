@@ -18,34 +18,74 @@ namespace Infrastructure.Persistence.EFCore.Repositories
             await _dbSet.AddAsync(entity, cancellationToken);
         }
 
-        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, string include = null, CancellationToken cancellationToken = default)
+        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, 
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
+            string include = null, 
+            CancellationToken cancellationToken = default)
         {
             var query = (IQueryable<TEntity>)_dbSet;
 
             if (filter != null)
             {
-                query.Where(filter);
+                query = query.Where(filter);
             }
 
             if (include != null)
             {
-                foreach (var prop in include.Split(','))
+                foreach (var prop in include.Split(',', StringSplitOptions.RemoveEmptyEntries))
                 {
-                    if (string.IsNullOrEmpty(prop))
-                    {
-                        throw new ArgumentException("Valor inválido", nameof(include));
-                    }
-
-                    query.Include(prop);
+                    query = query.Include(prop);
                 }
             }
 
-            return await query.ToListAsync(cancellationToken);
+            if (orderBy != null)
+            {
+                return await orderBy(query).ToListAsync(cancellationToken);
+            }
+            else
+            {
+                return await query.ToListAsync(cancellationToken);
+            }
+        }
+
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, 
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
+            string include = null, 
+            CancellationToken cancellationToken = default)
+        {
+            var query = (IQueryable<TEntity>)_dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (include != null)
+            {
+                foreach (var prop in include.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
+
+            if (orderBy != null)
+            {
+                return [.. orderBy(query)];
+            }
+            else
+            {
+                return [.. query];
+            }
         }
 
         public async Task<TEntity> FindAsync(CancellationToken cancellationToken = default, params object[] keys)
         {
             return await _dbSet.FindAsync(keys, cancellationToken);
+        }
+
+        public TEntity Find(params object[] keys)
+        {
+            return _dbSet.Find(keys);
         }
 
         public void Remove(TEntity entity)

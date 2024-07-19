@@ -8,7 +8,7 @@ namespace WebAPI.Controllers
     /// Clase base para controladores personalizada
     /// </summary>
     /// <param name="mediator"></param>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public abstract class BaseCustomController(IMediator mediator) : ControllerBase
     {

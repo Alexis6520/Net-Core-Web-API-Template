@@ -19,5 +19,10 @@ namespace Domain.Services
         /// <param name="cancellationToken"></param>
         /// <returns>Tarea que guarda los cambios</returns>
         Task SaveChangesAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Guarda los cambios realizados en los repositorios
+        /// </summary>
+        void SaveChanges();
     }
 }
