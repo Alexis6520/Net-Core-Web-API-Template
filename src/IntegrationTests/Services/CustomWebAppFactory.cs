@@ -14,7 +14,7 @@ namespace IntegrationTests.Services
     /// <typeparam name="T"></typeparam>
     public class CustomWebAppFactory<T> : WebApplicationFactory<T> where T : class
     {
-        private const string ConnectionString = "Data Source = 10.10.50.5; initial catalog = WebAPITemplateTest; user id = sa; password = @dministrator1; TrustServerCertificate=True;";
+        private const string ConnectionString = "Server=BATICOMPUTADORA;Database=Kripy_Kreme_Test;Trusted_Connection=True; TrustServerCertificate=True;";
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
