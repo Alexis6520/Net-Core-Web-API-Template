@@ -21,6 +21,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Application.Services\Application.Services.csproj" />
 		<ProjectReference Include="..\Infrastructure.Persistence.EFCore\Infrastructure.Persistence.EFCore.csproj" />
+		<ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>
