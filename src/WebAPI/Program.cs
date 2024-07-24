@@ -1,4 +1,5 @@
 using Application.Services;
+using Infrastructure;
 using Infrastructure.Persistence.EFCore;
 using NLog;
 using NLog.Web;
@@ -13,6 +14,7 @@ try
 
     builder.Services
         .AddApplicationServices()
+        .AddInfrastructure(builder.Configuration)
         .AddEFCore(builder.Configuration)
         .AddSwagger()
         .AddJWTAuthentication(builder.Configuration);
